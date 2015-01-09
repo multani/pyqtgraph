@@ -752,10 +752,10 @@ class ScatterPlotItem(GraphicsObject):
                     self.data['targetRect'][updateMask] = list(imap(QtCore.QRectF, updatePts[0,:], updatePts[1,:], width, width))
                 
                 data = self.data[viewMask]
-                if USE_PYSIDE:
-                    list(imap(p.drawPixmap, data['targetRect'], repeat(atlas), data['sourceRect']))
-                else:
-                    p.drawPixmapFragments(data['targetRect'].tolist(), data['sourceRect'].tolist(), atlas)
+                list(imap(p.drawPixmap,
+                          data['targetRect'],
+                          repeat(atlas),
+                          data['sourceRect']))
             else:
                 # render each symbol individually
                 p.setRenderHint(p.Antialiasing, aa)
